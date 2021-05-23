@@ -21,7 +21,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    questions(limit: Int): [Question]
+    questions(score: Int, sort: String, limit: Int, tag: String): [Question]
   }
 `;
 

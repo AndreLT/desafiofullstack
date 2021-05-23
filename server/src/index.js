@@ -14,7 +14,7 @@ const server = new ApolloServer({
 server.listen().then(({ url }) => {
   console.log(`
     Running...
-    Listening on pport 4000
+    Listening on port 4000
     Access at ${url}
   `);
 });

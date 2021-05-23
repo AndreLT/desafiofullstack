@@ -6,8 +6,14 @@ class SOQuestionsAPI extends RESTDataSource {
     this.baseURL = "https://api.stackexchange.com/2.2/";
   }
 
-  async getQuestions() {
-    const response = await this.get("questions", { site: "stackoverflow" });
+  async getQuestions({ score, sort, limit, tag }) {
+    const response = await this.get("questions", {
+      min: score,
+      sort,
+      pagesize: limit,
+      tagged: "javascript".concat(tag),
+      site: "stackoverflow",
+    });
     return Array.isArray(response.items)
       ? response.items.map((question) => this.questionReducer(question))
       : [];
