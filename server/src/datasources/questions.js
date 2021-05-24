@@ -7,21 +7,21 @@ class SOQuestionsAPI extends RESTDataSource {
   }
 
   async getQuestions({ score, sort, limit, tag }) {
-    const response =
-      sort in ["activity", "votes", "creation"]
-        ? await this.get("questions", {
-            min: score,
-            sort,
-            pagesize: limit,
-            tagged: tag,
-            site: "stackoverflow",
-          })
-        : await this.get("questions", {
-            sort,
-            pagesize: limit,
-            tagged: tag,
-            site: "stackoverflow",
-          });
+    const response = ["activity", "votes", "creation"].includes(sort)
+      ? await this.get("questions", {
+          pagesize: limit,
+          order: "desc",
+          min: score,
+          sort,
+          tagged: tag,
+          site: "stackoverflow",
+        })
+      : await this.get("questions", {
+          sort,
+          pagesize: limit,
+          tagged: tag,
+          site: "stackoverflow",
+        });
     return Array.isArray(response.items)
       ? response.items.map((question) => this.questionReducer(question))
       : [];

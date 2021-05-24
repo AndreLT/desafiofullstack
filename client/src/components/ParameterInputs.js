@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Input from "./Input";
+
 const ParameterInputs = (props) => {
   const [tag, setTag] = useState("");
   const [limit, setLimit] = useState(undefined);
@@ -41,35 +43,18 @@ const ParameterInputs = (props) => {
       </h2>
       <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col">
         <div className="flex justify-between">
-          <label className="block font-mono text-gray-500 font-semibold">
-            Tag
-            <input
-              className="block w-60 p-1 px-2"
-              type="text"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-            />
-          </label>
-          <label className="block font-mono text-gray-500 font-semibold">
-            Limit
-            <input
-              className="block w-60 p-1 px-2"
-              type="text"
-              value={limit}
-              onChange={(e) => setLimit(e.target.value)}
-            />
-          </label>
-          <label className="block font-mono text-gray-500 font-semibold">
-            Score
-            <input
-              className="block w-60 p-1 px-2"
-              type="text"
-              value={score}
-              onChange={(e) => setScore(e.target.value)}
-            />
-          </label>
-          <label className="block font-mono text-gray-500 font-semibold">
-            Sort
+          <Input label="Tag" value={tag} setter={(value) => setTag(value)} />
+          <Input
+            label="Limit"
+            value={limit}
+            setter={(value) => setLimit(value)}
+          />
+          <Input
+            label="Score"
+            value={score}
+            setter={(value) => setScore(value)}
+          />
+          <Input label="Sort" value={sort}>
             <select
               className="block appearance-none w-60 p-1 px-2"
               onChange={(e) => setSort(e.target.value)}
@@ -81,7 +66,7 @@ const ParameterInputs = (props) => {
               <option value="week">Week</option>
               <option value="month">Month</option>
             </select>
-          </label>
+          </Input>
         </div>
         {error ? (
           <div className="px-3 py-1 my-2 border-white rounded-md bg-red-500 text-white">
