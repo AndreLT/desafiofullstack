@@ -23,6 +23,12 @@ const typeDefs = gql`
   type Query {
     questions(score: Int, sort: String, limit: Int, tag: String): [Question]
   }
+
+  type QuestionPagination {
+    cursor: String!
+    hasMore: Boolean!
+    questions: [Question]!
+  }
 `;
 
 const dateScalar = new GraphQLScalarType({

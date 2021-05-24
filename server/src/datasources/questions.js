@@ -7,11 +7,12 @@ class SOQuestionsAPI extends RESTDataSource {
   }
 
   async getQuestions({ score, sort, limit, tag }) {
+    console.log(score, limit, sort, tag);
     const response = await this.get("questions", {
       min: score,
       sort,
       pagesize: limit,
-      tagged: "javascript".concat(tag),
+      tagged: tag,
       site: "stackoverflow",
     });
     return Array.isArray(response.items)
