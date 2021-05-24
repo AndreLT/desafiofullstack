@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const ParameterInputs = (props) => {
   const [tag, setTag] = useState("");
-  const [limit, setLimit] = useState(null);
-  const [score, setScore] = useState(null);
+  const [limit, setLimit] = useState(undefined);
+  const [score, setScore] = useState(undefined);
   const [sort, setSort] = useState("");
   const [error, setError] = useState(false);
 

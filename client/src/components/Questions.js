@@ -28,11 +28,13 @@ const Questions = (props) => {
   });
 
   return response.data ? (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-20">
       {response.data.questions.length ? (
-        response.data.questions.map((question) => <Question {...question} />)
+        response.data.questions.map((question) => (
+          <Question key={question.creationDate} {...question} />
+        ))
       ) : (
-        <div className="text-center text-2xl text-white  rounded-md my-2 px-2 py-5 bg-gray-400">
+        <div className="text-center text-2xl text-white rounded-md my-2 px-2 py-5 bg-gray-400">
           Nenhum resultado encontrado :(
         </div>
       )}

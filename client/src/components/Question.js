@@ -1,10 +1,21 @@
 const Question = (props) => {
+  const dateObject = new Date(props.creationDate * 1000);
+
+  const humanReadableDate =
+    dateObject.getDate() +
+    "/" +
+    dateObject.getMonth() +
+    "/" +
+    dateObject.getFullYear();
   return (
-    <article className="p-4 flex space-x-2 border-2 mt-2 rounded-md hover:bg-gray-100">
+    <article
+      key={props.creationDate}
+      className="p-4 flex space-x-2 border-2 mt-2 rounded-md hover:bg-gray-100"
+    >
       <div className="flex flex-col justify-center text-center text-gray-500 mr-2">
-        Answers
+        Respostas
         <br />
-        {props.answers}
+        <span className="font-semibold mt-1">{props.answers}</span>
       </div>
       <a href={props.link}>
         <img
@@ -20,7 +31,13 @@ const Question = (props) => {
           <a href={props.link}>{props.title}</a>
         </h2>
         <div className="text-sm text-gray-600 mb-3">
-          Asked by: <a href={props.owner.link}>{props.owner.name}</a>
+          Postado por:{" "}
+          <a
+            className="bg-gray-200 px-1 rounded-sm hover:bg-blue-400 hover:text-white"
+            href={props.owner.link}
+          >
+            {props.owner.name}
+          </a>
         </div>
         <div className="flex flex-wrap self-end text-sm font-medium whitespace-pre">
           {props.tags.map((tag) => (
@@ -33,6 +50,9 @@ const Question = (props) => {
         </div>
         <div className="absolute top-0 right-0 bg-gray-200 px-2 rounded-md text-gray-600">
           Score: {props.score}
+        </div>
+        <div className="absolute right-0 bottom-0 text-sm border border-gray-400 px-2 rounded-md text-gray-600">
+          Criado em: {humanReadableDate}
         </div>
       </div>
     </article>
